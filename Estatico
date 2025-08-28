@@ -1,1 +1,84 @@
+# 🏪 Ejemplo de ADT Estáticos 
 
+# ----------- ESTRUCTURA ESTÁTICA (Diccionario de productos fijos) ------------
+Productos = {
+    '001': {'nombre': 'Lápiz', 'precio': 1.5, 'stock': 10},
+    '002': {'nombre': 'Lapicera', 'precio': 2.0, 'stock': 8},
+    '003': {'nombre': 'Borrador', 'precio': 0.8, 'stock': 12},
+    '004': {'nombre': 'Caja de Colores', 'precio': 5.5, 'stock': 5},
+    '005': {'nombre': 'Marcador', 'precio': 1.2, 'stock': 15}
+}
+
+# ----------- ESTRUCTURA DINÁMICA (Carrito de compras) ---------------------
+carrito = []
+
+
+# ----------- FUNCIONES ESTÁTICAS ------------------------------------------
+def mostrar_productos():
+    """Muestra los productos disponibles"""
+    print('\n📦 Productos disponibles:')
+    print('#' * 40)
+    for codigo, datos in Productos.items():
+        print(f'Código: {codigo}')
+        print(f'  Producto: {datos["nombre"]}')
+        print(f'  Precio  : ${datos["precio"]}')
+        print(f'  Stock   : {datos["stock"]}')
+        print('-' * 40)
+
+
+def comprar_producto():
+    """Permite comprar un producto y agregarlo al carrito"""
+    codigo = input("👉 Ingresa el código del producto a comprar: ")
+    
+    if codigo in Productos:
+        if Productos[codigo]['stock'] > 0:
+            Productos[codigo]['stock'] -= 1
+            carrito.append(Productos[codigo]['nombre'])
+            print(f"✅ Compra exitosa de: {Productos[codigo]['nombre']}")
+            print(f"   Stock restante: {Productos[codigo]['stock']}")
+        else:
+            print("❌ No hay stock disponible")
+    else:
+        print("❌ Código no válido")
+
+
+# ----------- FUNCIONES DINÁMICAS ------------------------------------------
+def ver_carrito():
+    """Muestra el carrito dinámico"""
+    if len(carrito) == 0:
+        print("\n🛒 Tu carrito está vacío")
+    else:
+        print("\n🛒 Carrito de compras:")
+        for i, producto in enumerate(carrito, start=1):
+            print(f"{i}. {producto}")
+
+
+# ----------- PROGRAMA PRINCIPAL -------------------------------------------
+def main():
+    print("📖 SISTEMA DE PAPELERÍA")
+    print("=" * 40)
+    
+    while True:
+        print("\nOpciones:")
+        print("1. Ver productos (ESTÁTICA)")
+        print("2. Comprar producto (agregar al carrito)")
+        print("3. Ver carrito (DINÁMICA)")
+        print("4. Salir")
+        
+        opcion = input("Elige una opción: ")
+        
+        if opcion == "1":
+            mostrar_productos()
+        elif opcion == "2":
+            comprar_producto()
+        elif opcion == "3":
+            ver_carrito()
+        elif opcion == "4":
+            print("¡Gracias por visitar la papelería! 👋")
+            break
+        else:
+            print("❌ Opción no válida")
+
+
+if __name__ == '__main__':
+    main()
