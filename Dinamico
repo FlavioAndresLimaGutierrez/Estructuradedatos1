@@ -1,1 +1,44 @@
+carrito = []
+""" Programa que simula un carrito de compras
+    en una zapatería usando una lista dinámica.
+"""
 
+def agregar_producto():
+    """Función para agregar productos al carrito de zapatería."""
+    producto = input("👞 Producto a agregar (ej: Zapatillas, Botines, Sandalias): ")
+    carrito.append(producto)
+    print(f"✅ {producto} agregado al carrito.")
+
+
+def ver_carrito():
+    """Función para mostrar el contenido del carrito."""
+    if not carrito:
+        print("\n🛒 El carrito está vacío.")
+    else:
+        print("\n🛒 Carrito de compras:")
+        for i, producto in enumerate(carrito, start=1):
+            print(f"{i}. {producto}")
+
+
+def main():
+    """Función principal del programa."""
+    while True:
+        print("\n=== MENÚ ZAPATERÍA ===")
+        print("1. Agregar ")
+        print("2. Ver ")
+        print("3. Salir")
+        opcion = input("Opción: ")
+        
+        if opcion == "1":
+            agregar_producto()
+        elif opcion == "2":
+            ver_carrito()
+        elif opcion == "3":
+            print("👋 Gracias por su compra en la zapatería. ¡Vuelva pronto!")
+            break
+        else:
+            print(" Opción inválida, intente de nuevo.")
+
+
+if __name__ == '__main__':
+    main()
